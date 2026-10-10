@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { MagnifyingGlass } from '@phosphor-icons/react'
+import { Search } from 'lucide-react'
 import '../styles/search.css'
 
 export default function SearchBar() {
@@ -32,7 +32,7 @@ export default function SearchBar() {
         aria-label="بحث"
         onClick={() => inputRef.current?.focus()}
       >
-        <MagnifyingGlass size={22} weight="light" />
+        <Search size={30} strokeWidth={2} />
       </button>
     </form>
   )

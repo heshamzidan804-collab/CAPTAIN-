@@ -5,18 +5,12 @@ import '../styles/map.css'
 
 const CENTER = [31.7425, 30.2927] // [lng, lat] العاشر من رمضان
 const ZOOM = 14.5
-const PLUM = '#140e36'
-const PLUM_SOFT = '#7d5683'
-const MILK = '#f4f7ff'
+const NAVY = '#2b1b3d'
+const CREAM = '#f7f4f8'
 const RTL_PLUGIN = 'https://unpkg.com/@mapbox/mapbox-gl-rtl-text@0.3.0/dist/mapbox-gl-rtl-text.js'
 
-// الاسم: عربي ← المحلي ← إنجليزي، والأسماء الرقمية بتتخفى
-const NAME = [
-  'case',
-  ['==', ['to-number', ['get', 'name'], -1], -1],
-  ['coalesce', ['get', 'name:ar'], ['get', 'name'], ['get', 'name_en']],
-  '',
-]
+// الاسم: عربي ← الاسم المحلي ← إنجليزي
+const NAME = ['coalesce', ['get', 'name:ar'], ['get', 'name'], ['get', 'name_en']]
 
 const POI_CLASSES = [
   'hospital', 'pharmacy', 'school', 'college', 'library', 'place_of_worship',
@@ -33,20 +27,18 @@ function applyData(map) {
 
   layers.forEach((l) => {
     if (l.type !== 'symbol') return
-    const hide = () => map.setLayoutProperty(l.id, 'visibility', 'none')
-    if (l.id.startsWith('poi') || l.id.includes('shield')) return hide()
+    if (l.id.startsWith('poi')) {
+      map.setLayoutProperty(l.id, 'visibility', 'none')
+      return
+    }
     const tf = l.layout && l.layout['text-field']
     if (!tf) return
     const s = JSON.stringify(tf)
-    if (s.includes('ref') || s.includes('iata')) return hide()
-
+    if (s.includes('ref') || s.includes('iata')) return
     map.setLayoutProperty(l.id, 'text-field', NAME)
-    const isRoad = l.id.includes('highway-name')
-    map.setPaintProperty(l.id, 'text-color', isRoad ? PLUM_SOFT : PLUM)
-    map.setPaintProperty(l.id, 'text-halo-color', MILK)
-    map.setPaintProperty(l.id, 'text-halo-width', 1.5)
-    map.setPaintProperty(l.id, 'text-halo-blur', 0.5)
-    if (l.id.includes('name-minor')) map.setLayerZoomRange(l.id, 16, 24)
+    map.setPaintProperty(l.id, 'text-color', NAVY)
+    map.setPaintProperty(l.id, 'text-halo-color', CREAM)
+    map.setPaintProperty(l.id, 'text-halo-width', 1.2)
   })
 
   if (!sourceId || map.getLayer('captain-poi-dots')) return
@@ -57,13 +49,14 @@ function applyData(map) {
     type: 'circle',
     source: sourceId,
     'source-layer': 'poi',
-    minzoom: 15.5,
+    minzoom: 14,
     filter,
     paint: {
-      'circle-radius': ['interpolate', ['linear'], ['zoom'], 15.5, 3, 18, 5],
-      'circle-color': MILK,
-      'circle-stroke-color': PLUM,
+      'circle-radius': ['interpolate', ['linear'], ['zoom'], 14, 2.5, 18, 6],
+      'circle-color': NAVY,
+      'circle-stroke-color': CREAM,
       'circle-stroke-width': 1.5,
+      'circle-opacity': 0.9,
     },
   })
 
@@ -72,17 +65,21 @@ function applyData(map) {
     type: 'symbol',
     source: sourceId,
     'source-layer': 'poi',
-    minzoom: 16.5,
+    minzoom: 15.5,
     filter,
     layout: {
       'text-field': NAME,
       'text-font': fontStack,
-      'text-size': 11,
+      'text-size': 12,
       'text-offset': [0, 0.9],
       'text-anchor': 'top',
       'text-optional': true,
     },
-    paint: { 'text-color': PLUM, 'text-halo-color': MILK, 'text-halo-width': 1.5 },
+    paint: {
+      'text-color': NAVY,
+      'text-halo-color': CREAM,
+      'text-halo-width': 1.4,
+    },
   })
 }
 
@@ -101,12 +98,13 @@ export default function MapBackground({ mapRef }) {
         const maplibregl = mod.default ?? mod
         if (typeof maplibregl.setWorkerUrl === 'function') maplibregl.setWorkerUrl(workerUrl)
 
+        // تشكيل الحروف العربية على الخريطة
         try {
           const st = maplibregl.getRTLTextPluginStatus?.()
           if (st !== 'loaded' && st !== 'loading') {
             Promise.resolve(maplibregl.setRTLTextPlugin?.(RTL_PLUGIN, true)).catch(() => {})
           }
-        } catch { /* ignore */ }
+        } catch (_) { /* ignore */ }
 
         map = new maplibregl.Map({
           container: ref.current,
@@ -139,7 +137,7 @@ export default function MapBackground({ mapRef }) {
       cancelled = true
       map?.remove()
     }
-  }, [mapRef])
+  }, [])
 
   return (
     <div className="map-root">

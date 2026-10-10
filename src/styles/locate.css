@@ -25,13 +25,13 @@
   position: absolute; inset: 0; border-radius: 50%;
   background: conic-gradient(from 210deg, #f7f8fa, #aab0b8, #eef0f3, #8f969f, #f4f5f7, #b4bac2, #f7f8fa);
   border: 1px solid rgba(255,255,255,.85);
-  box-shadow: 0 6px 14px rgba(20, 14, 54,.35), inset 0 1px 1px rgba(255,255,255,.9), inset 0 -2px 4px rgba(20, 14, 54,.25);
+  box-shadow: 0 6px 14px rgba(43, 27, 61,.35), inset 0 1px 1px rgba(255,255,255,.9), inset 0 -2px 4px rgba(43, 27, 61,.25);
   transition: transform .12s ease;
 }
 .locate__puck::after {
   content: ""; position: absolute; inset: 12px; border-radius: 50%;
   background: radial-gradient(circle at 35% 30%, #fff 0%, #cfd4da 45%, #9aa1ab 100%);
-  box-shadow: inset 0 1px 2px rgba(255,255,255,.9), 0 1px 2px rgba(20, 14, 54,.3);
+  box-shadow: inset 0 1px 2px rgba(255,255,255,.9), 0 1px 2px rgba(43, 27, 61,.3);
 }
 .locate:hover .locate__puck { transform: scale(1.04); }
 .locate:active .locate__puck { transform: scale(.94); }
@@ -62,11 +62,11 @@
 .user-dot {
   position: relative; width: 20px; height: 20px; border-radius: 50%;
   background: var(--plum); border: 3px solid #fff;
-  box-shadow: 0 2px 8px rgba(20, 14, 54, .45);
+  box-shadow: 0 2px 8px rgba(43, 27, 61, .45);
 }
 .user-dot::before {
   content: ""; position: absolute; inset: -3px; border-radius: 50%;
-  background: rgba(20, 14, 54, .35);
+  background: rgba(43, 27, 61, .35);
   animation: user-pulse 2s ease-out infinite;
 }
 @keyframes user-pulse {
@@ -78,4 +78,4 @@
 }
 
 .user-dot { background: var(--violet); }
-.user-dot::before { background: rgba(64, 33, 88, 0.35); }
+.user-dot::before { background: rgba(81, 43, 129, 0.35); }
