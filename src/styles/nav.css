@@ -1,0 +1,25 @@
+.nav {
+  position: absolute; left: 50%; transform: translateX(-50%);
+  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  z-index: 600;
+  width: min(calc(100% - 48px), 560px); height: 72px;
+  display: flex; align-items: center; justify-content: space-around;
+  padding: 0 8px;
+  background: var(--glass-bg);
+  border: 1.5px solid var(--glass-edge);
+  border-radius: 20px;
+  box-shadow: var(--shadow-glass);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+}
+.nav__btn {
+  display: grid; place-items: center; width: 56px; height: 56px;
+  border: 0; border-radius: 16px; background: transparent;
+  color: var(--navy); cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background .15s ease, transform .12s ease;
+}
+.nav__btn svg { opacity: .85; transition: opacity .15s ease; }
+.nav__btn:hover { background: rgba(59, 80, 104, 0.08); }
+.nav__btn:active { transform: scale(.92); }
+.nav__btn:focus-visible { outline: 2px solid var(--navy); outline-offset: 2px; }
+.nav__btn--active svg { opacity: 1; }

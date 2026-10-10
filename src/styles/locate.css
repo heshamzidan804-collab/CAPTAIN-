@@ -1,0 +1,78 @@
+.locate {
+  position: absolute; left: 69%; top: 71%; z-index: 600;
+  width: 56px; height: 56px; padding: 0; border: 0; border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: transparent; cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.locate__halo {
+  position: absolute; inset: -26px; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle, rgba(255,255,255,.55) 0%, rgba(255,255,255,.28) 55%, rgba(255,255,255,0) 72%);
+  border: 1px solid rgba(255,255,255,.55);
+}
+.locate__ring, .locate__ping {
+  position: absolute; inset: 0; border-radius: 50%; pointer-events: none;
+  border: 2px solid rgba(255,255,255,.85);
+}
+.locate__ring { animation: locate-pulse 2.8s ease-out infinite; }
+.locate__ring:nth-of-type(2) { animation-delay: 1.4s; }
+.locate__ping { animation: locate-pulse .8s ease-out 1; }
+@keyframes locate-pulse {
+  0%   { transform: scale(1);   opacity: .75; }
+  100% { transform: scale(2.6); opacity: 0; }
+}
+.locate__puck {
+  position: absolute; inset: 0; border-radius: 50%;
+  background: conic-gradient(from 210deg, #f7f8fa, #aab0b8, #eef0f3, #8f969f, #f4f5f7, #b4bac2, #f7f8fa);
+  border: 1px solid rgba(255,255,255,.85);
+  box-shadow: 0 6px 14px rgba(40,50,65,.35), inset 0 1px 1px rgba(255,255,255,.9), inset 0 -2px 4px rgba(60,70,85,.25);
+  transition: transform .12s ease;
+}
+.locate__puck::after {
+  content: ""; position: absolute; inset: 12px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff 0%, #cfd4da 45%, #9aa1ab 100%);
+  box-shadow: inset 0 1px 2px rgba(255,255,255,.9), 0 1px 2px rgba(40,50,65,.3);
+}
+.locate:hover .locate__puck { transform: scale(1.04); }
+.locate:active .locate__puck { transform: scale(.94); }
+.locate:focus-visible { outline: 2px solid var(--navy); outline-offset: 6px; }
+@media (prefers-reduced-motion: reduce) {
+  .locate__ring, .locate__ping { animation: none; opacity: 0; }
+}
+
+.locate__icon {
+  position: absolute; inset: 0; display: grid; place-items: center;
+  color: var(--navy); pointer-events: none; opacity: .8;
+  transition: opacity .2s ease;
+}
+.locate--following .locate__icon { opacity: 1; }
+.locate--free .locate__icon { opacity: .55; }
+.locate--locating .locate__icon { animation: locate-blink 1s ease-in-out infinite; }
+@keyframes locate-blink { 50% { opacity: .3; } }
+
+.locate-toast {
+  position: absolute; left: 50%; bottom: 120px; transform: translateX(-50%);
+  z-index: 700; max-width: calc(100% - 48px);
+  padding: 10px 16px; border-radius: 14px;
+  background: var(--glass-bg); border: 1px solid var(--glass-edge);
+  box-shadow: var(--shadow-glass); color: var(--navy);
+  font-size: 14px; font-weight: 500; text-align: center;
+}
+
+.user-dot {
+  position: relative; width: 20px; height: 20px; border-radius: 50%;
+  background: var(--navy); border: 3px solid #fff;
+  box-shadow: 0 2px 8px rgba(30, 40, 55, .45);
+}
+.user-dot::before {
+  content: ""; position: absolute; inset: -3px; border-radius: 50%;
+  background: rgba(59, 80, 104, .35);
+  animation: user-pulse 2s ease-out infinite;
+}
+@keyframes user-pulse {
+  0%   { transform: scale(1); opacity: .8; }
+  100% { transform: scale(3); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .user-dot::before, .locate--locating .locate__icon { animation: none; }
+}

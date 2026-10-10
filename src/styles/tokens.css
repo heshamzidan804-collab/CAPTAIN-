@@ -1,0 +1,17 @@
+:root {
+  --cream: #f4f0e1;
+  --cream-soft: #f8f5ea;
+  --navy: #3b5068;
+  --navy-soft: #5b6d82;
+  --map-block: #c9ced6;
+  --map-street: #efeadb;
+  --road: #9aa3b0;
+  --glass-bg: rgba(247, 245, 236, 0.78);
+  --glass-border: rgba(255, 255, 255, 0.75);
+  --glass-edge: rgba(120, 130, 145, 0.45);
+  --shadow-glass: 0 6px 18px rgba(59, 80, 104, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --font: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  --stage-bg: #e8e8ea;
+}
