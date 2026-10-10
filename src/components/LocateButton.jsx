@@ -15,6 +15,18 @@ export default function LocateButton({ mapRef }) {
   const mlRef = useRef(null)
   const toastTimer = useRef(null)
 
+  const stop = () => {
+    if (watchId.current !== null) navigator.geolocation.clearWatch(watchId.current)
+    watchId.current = null
+    markerRef.current?.remove()
+    markerRef.current = null
+    if (dragRef.current && mapRef.current) mapRef.current.off('dragstart', dragRef.current)
+    dragRef.current = null
+    followRef.current = false
+    lastRef.current = null
+    setStatus('idle')
+  }
+
   useEffect(() => {
     import('maplibre-gl').then((m) => {
       mlRef.current = m.default ?? m
@@ -27,18 +39,6 @@ export default function LocateButton({ mapRef }) {
     setMsg(text)
     clearTimeout(toastTimer.current)
     toastTimer.current = setTimeout(() => setMsg(''), 4500)
-  }
-
-  const stop = () => {
-    if (watchId.current !== null) navigator.geolocation.clearWatch(watchId.current)
-    watchId.current = null
-    markerRef.current?.remove()
-    markerRef.current = null
-    if (dragRef.current && mapRef.current) mapRef.current.off('dragstart', dragRef.current)
-    dragRef.current = null
-    followRef.current = false
-    lastRef.current = null
-    setStatus('idle')
   }
 
   const onPosition = (pos) => {
