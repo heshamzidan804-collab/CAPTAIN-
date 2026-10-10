@@ -18,7 +18,7 @@ export default function BottomNav() {
     <nav className="nav" dir="ltr" aria-label="التنقل الرئيسي">
       {TABS.map(({ id, label, Icon }) => {
         const isActive = active === id
-        const fill = isActive ? (id === 'home' ? 'currentColor' : 'rgba(59, 80, 104, 0.18)') : 'none'
+        const fill = isActive ? (id === 'home' ? 'currentColor' : 'rgba(81, 43, 129, 0.18)') : 'none'
         return (
           <button
             key={id}

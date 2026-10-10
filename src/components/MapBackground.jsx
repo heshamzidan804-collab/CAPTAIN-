@@ -5,8 +5,8 @@ import '../styles/map.css'
 
 const CENTER = [31.7425, 30.2927] // [lng, lat] العاشر من رمضان
 const ZOOM = 14.5
-const NAVY = '#3b5068'
-const CREAM = '#f4f0e1'
+const NAVY = '#2b1b3d'
+const CREAM = '#f7f4f8'
 const RTL_PLUGIN = 'https://unpkg.com/@mapbox/mapbox-gl-rtl-text@0.3.0/dist/mapbox-gl-rtl-text.js'
 
 // الاسم: عربي ← الاسم المحلي ← إنجليزي

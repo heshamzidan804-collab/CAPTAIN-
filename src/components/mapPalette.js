@@ -1,12 +1,12 @@
-// ألوان الخريطة مأخوذة من التصميم
+// ألوان الخريطة: لافندر هادي متناسق مع الباليت
 const C = {
-  land: '#c9ced6',
-  street: '#efeadb',
-  road: '#a3acb8',
-  roadEdge: '#8e97a5',
-  building: '#c1c7d0',
-  park: '#c9d6c3',
-  water: '#b7c4d3',
+  land: '#d3ccdd',
+  street: '#f2eef6',
+  road: '#9a8bb3',
+  roadEdge: '#85749f',
+  building: '#cbc3d6',
+  park: '#cdd5cf',
+  water: '#b9bdda',
 }
 
 const has = (id, ...words) => words.some((w) => id.includes(w))

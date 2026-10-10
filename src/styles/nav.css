@@ -14,12 +14,14 @@
 .nav__btn {
   display: grid; place-items: center; width: 56px; height: 56px;
   border: 0; border-radius: 16px; background: transparent;
-  color: var(--navy); cursor: pointer;
+  color: var(--plum); cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   transition: background .15s ease, transform .12s ease;
 }
 .nav__btn svg { opacity: .85; transition: opacity .15s ease; }
-.nav__btn:hover { background: rgba(59, 80, 104, 0.08); }
+.nav__btn:hover { background: rgba(43, 27, 61, 0.08); }
 .nav__btn:active { transform: scale(.92); }
-.nav__btn:focus-visible { outline: 2px solid var(--navy); outline-offset: 2px; }
+.nav__btn:focus-visible { outline: 2px solid var(--plum); outline-offset: 2px; }
 .nav__btn--active svg { opacity: 1; }
+
+.nav__btn--active { color: var(--violet); }
