@@ -1,20 +1,14 @@
 :root {
-  /* Midnight plum / Violet / Milky */
-  --milk: #f7f4f8;
-  --plum: #2b1b3d;
-  --plum-soft: #6a5a7c;
-  --violet: #512b81;
+  --milk: #f4f7ff;
+  --plum: #140e36;
+  --plum-soft: #7d5683;
+  --violet: #402158;
 
-  /* الخريطة */
-  --map-land: #dad5e1;
-  --map-street: #f4f1f6;
-  --road: #b5abc4;
-
-  /* الزجاج */
-  --glass-bg: rgba(247, 244, 248, 0.78);
-  --glass-border: rgba(255, 255, 255, 0.75);
-  --glass-edge: rgba(43, 27, 61, 0.28);
-  --shadow-glass: 0 6px 18px rgba(43, 27, 61, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  --glass-bg: rgba(244, 247, 255, 0.82);
+  --glass-border: rgba(255, 255, 255, 0.8);
+  --glass-edge: rgba(20, 14, 54, 0.14);
+  --shadow-glass: 0 10px 30px rgba(20, 14, 54, 0.14), 0 2px 6px rgba(20, 14, 54, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
 
   --radius-lg: 18px;
   --radius-xl: 24px;
